@@ -4,7 +4,12 @@ from pydantic import BaseModel
 import pandas as pd
 import joblib
 import os
+from pathlib import Path
+import joblib
 
+MODEL_PATH = Path(__file__).resolve().parent / "readmission_model.pkl"
+
+model = joblib.load(MODEL_PATH)
 
 
 # ==================================================

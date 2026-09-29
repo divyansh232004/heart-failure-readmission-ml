@@ -1,4 +1,5 @@
-const API_URL = "http://127.0.0.1:8000/predict";
+const API_URL =
+    "https://heart-failure-readmission-api.onrender.com/predict";
 
 const form = document.getElementById("predictionForm");
 const predictButton = document.getElementById("predictButton");
