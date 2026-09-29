@@ -1,0 +1,793 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
+    --success: #16a34a;
+    --danger: #dc2626;
+
+    --text: #172033;
+    --text-light: #64748b;
+
+    --border: #dbe2ea;
+    --background: #f4f7fb;
+    --white: #ffffff;
+
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: auto;
+
+    padding: 18px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 46px;
+    height: 46px;
+
+    background: var(--primary);
+    color: white;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+.logo h1 {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.logo p {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: var(--success);
+
+    background: #f0fdf4;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    background: var(--success);
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 45px 20px 60px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.hero h2 {
+    font-size: 32px;
+
+    margin-bottom: 10px;
+
+    font-weight: 750;
+}
+
+.hero p {
+    max-width: 720px;
+
+    margin: auto;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FORM SECTION
+========================================================= */
+
+.form-section {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 30px;
+
+    margin-bottom: 22px;
+
+    box-shadow: var(--shadow);
+}
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.section-title > span {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.section-title h3 {
+    font-size: 19px;
+
+    margin-bottom: 2px;
+}
+
+.section-title p {
+    color: var(--text-light);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FORM GRID
+========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group label {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #334155;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    height: 45px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    padding: 0 13px;
+
+    background: white;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #94a3b8;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   SUBMIT AREA
+========================================================= */
+
+.submit-area {
+    text-align: center;
+
+    margin-top: 35px;
+}
+
+#predictButton {
+    border: none;
+
+    background: var(--primary);
+
+    color: white;
+
+    padding: 15px 25px;
+
+    min-width: 280px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    transition:
+        background 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+#predictButton:hover {
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+#predictButton:active {
+    transform: translateY(0);
+}
+
+#predictButton:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+.arrow {
+    font-size: 20px;
+}
+
+.disclaimer {
+    margin-top: 13px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow);
+
+    margin-top: 25px;
+}
+
+.spinner {
+    width: 38px;
+    height: 38px;
+
+    border: 4px solid #dbeafe;
+
+    border-top-color: var(--primary);
+
+    border-radius: 50%;
+
+    margin: 0 auto 15px;
+
+    animation: spin 0.8s linear infinite;
+}
+
+.loading p {
+    color: var(--text-light);
+
+    font-size: 14px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   RESULT SECTION
+========================================================= */
+
+.result-section {
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    margin-top: 25px;
+
+    box-shadow: var(--shadow);
+}
+
+.result-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.result-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #dcfce7;
+
+    color: var(--success);
+
+    font-size: 22px;
+
+    font-weight: 700;
+}
+
+.result-header h2 {
+    font-size: 21px;
+}
+
+.result-header p {
+    color: var(--text-light);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESULT CONTENT
+========================================================= */
+
+.result-content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 30px;
+
+    padding: 30px 0;
+}
+
+.result-main {
+    padding: 25px;
+
+    border-radius: 12px;
+
+    background: var(--primary-light);
+
+    border: 1px solid #dbeafe;
+}
+
+.result-label {
+    display: block;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.result-main h3 {
+    color: var(--primary);
+
+    font-size: 24px;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   PROBABILITY
+========================================================= */
+
+.probability {
+    padding: 25px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    border: 1px solid var(--border);
+}
+
+.probability-value {
+    font-size: 36px;
+
+    font-weight: 800;
+
+    color: var(--text);
+
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    height: 12px;
+
+    background: #e2e8f0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+
+    width: 0%;
+
+    background: var(--primary);
+
+    border-radius: 20px;
+
+    transition: width 0.8s ease;
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.secondary-button {
+    width: 100%;
+
+    height: 46px;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--primary);
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.secondary-button:hover {
+    background: var(--primary-light);
+
+    border-color: var(--primary);
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+.error-message {
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #991b1b;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    margin-top: 20px;
+}
+
+.error-message strong {
+    display: block;
+
+    margin-bottom: 4px;
+}
+
+.error-message p {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   UTILITY
+========================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    text-align: center;
+
+    padding: 30px 20px;
+
+    border-top: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--text-light);
+
+    font-size: 12px;
+}
+
+footer p:first-child {
+    margin-bottom: 3px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .form-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .result-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .header-content {
+        padding: 15px;
+    }
+
+    .logo h1 {
+        font-size: 17px;
+    }
+
+    .logo p {
+        font-size: 11px;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+
+        font-size: 20px;
+    }
+
+    .status {
+        font-size: 11px;
+
+        padding: 6px 9px;
+    }
+
+    .hero {
+        margin-bottom: 25px;
+    }
+
+    .hero h2 {
+        font-size: 25px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    .container {
+        padding: 30px 12px 45px;
+    }
+
+    .form-section {
+        padding: 20px 16px;
+
+        border-radius: 13px;
+    }
+
+    .section-title {
+        margin-bottom: 20px;
+    }
+
+    .section-title h3 {
+        font-size: 17px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    #predictButton {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .result-section {
+        padding: 20px 16px;
+    }
+
+    .result-content {
+        gap: 15px;
+    }
+
+    .result-main,
+    .probability {
+        padding: 20px;
+    }
+
+    .probability-value {
+        font-size: 30px;
+    }
+
+}

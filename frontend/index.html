@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Heart Failure Readmission Predictor</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <div class="logo">
+                <span class="logo-icon">♥</span>
+
+                <div>
+                    <h1>HeartReadmit AI</h1>
+                    <p>30-Day Hospital Readmission Predictor</p>
+                </div>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                ML Model Online
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         MAIN
+    =========================================== -->
+
+    <main class="container">
+
+        <section class="hero">
+
+            <h2>30-Day Readmission Risk Prediction</h2>
+
+            <p>
+                Enter patient information below to estimate the probability
+                of hospital readmission within 30 days using a trained
+                Logistic Regression model.
+            </p>
+
+        </section>
+
+
+        <!-- ======================================
+             PREDICTION FORM
+        ======================================= -->
+
+        <form id="predictionForm">
+
+
+            <!-- ==================================
+                 SECTION 1 — BASIC INFORMATION
+            =================================== -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <span>01</span>
+
+                    <div>
+                        <h3>Basic Information</h3>
+                        <p>Patient demographic information</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="Age">
+                            Age
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Age"
+                            name="Age"
+                            min="0"
+                            max="120"
+                            step="1"
+                            placeholder="e.g. 65"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="BMI">
+                            BMI
+                        </label>
+
+                        <input
+                            type="number"
+                            id="BMI"
+                            name="BMI"
+                            step="0.1"
+                            placeholder="e.g. 27.5"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Gender">
+                            Gender
+                        </label>
+
+                        <select id="Gender" name="Gender" required>
+
+                            <option value="">
+                                Select gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Smoking_Status">
+                            Smoking Status
+                        </label>
+
+                        <select
+                            id="Smoking_Status"
+                            name="Smoking_Status"
+                            required
+                        >
+
+                            <option value="">
+                                Select status
+                            </option>
+
+                            <option value="Never">
+                                Never
+                            </option>
+
+                            <option value="Former">
+                                Former
+                            </option>
+
+                            <option value="Current">
+                                Current
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Alcohol_Consumption">
+                            Alcohol Consumption
+                        </label>
+
+                        <select
+                            id="Alcohol_Consumption"
+                            name="Alcohol_Consumption"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="No">
+                                No
+                            </option>
+
+                            <option value="Yes">
+                                Yes
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Exercise_Frequency">
+                            Exercise Frequency
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Exercise_Frequency"
+                            name="Exercise_Frequency"
+                            min="0"
+                            step="1"
+                            placeholder="e.g. 2"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 SECTION 2 — MEDICAL HISTORY
+            =================================== -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <span>02</span>
+
+                    <div>
+                        <h3>Medical History</h3>
+                        <p>Existing conditions and previous admissions</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="Hypertension">
+                            Hypertension
+                        </label>
+
+                        <select
+                            id="Hypertension"
+                            name="Hypertension"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Diabetes">
+                            Diabetes
+                        </label>
+
+                        <select
+                            id="Diabetes"
+                            name="Diabetes"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Chronic_Kidney_Disease">
+                            Chronic Kidney Disease
+                        </label>
+
+                        <select
+                            id="Chronic_Kidney_Disease"
+                            name="Chronic_Kidney_Disease"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Coronary_Artery_Disease">
+                            Coronary Artery Disease
+                        </label>
+
+                        <select
+                            id="Coronary_Artery_Disease"
+                            name="Coronary_Artery_Disease"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Previous_Stroke">
+                            Previous Stroke
+                        </label>
+
+                        <select
+                            id="Previous_Stroke"
+                            name="Previous_Stroke"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Atrial_Fibrillation">
+                            Atrial Fibrillation
+                        </label>
+
+                        <select
+                            id="Atrial_Fibrillation"
+                            name="Atrial_Fibrillation"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Previous_HF_Admissions">
+                            Previous HF Admissions
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Previous_HF_Admissions"
+                            name="Previous_HF_Admissions"
+                            min="0"
+                            step="1"
+                            placeholder="e.g. 2"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Previous_Hospital_Admissions">
+                            Previous Hospital Admissions
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Previous_Hospital_Admissions"
+                            name="Previous_Hospital_Admissions"
+                            min="0"
+                            step="1"
+                            placeholder="e.g. 3"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 SECTION 3 — HEART FAILURE
+            =================================== -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <span>03</span>
+
+                    <div>
+                        <h3>Heart Failure Details</h3>
+                        <p>Clinical heart failure characteristics</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="NYHA_Class">
+                            NYHA Class
+                        </label>
+
+                        <select
+                            id="NYHA_Class"
+                            name="NYHA_Class"
+                            required
+                        >
+
+                            <option value="">
+                                Select class
+                            </option>
+
+                            <option value="1">Class I</option>
+                            <option value="2">Class II</option>
+                            <option value="3">Class III</option>
+                            <option value="4">Class IV</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Heart_Failure_Type">
+                            Heart Failure Type
+                        </label>
+
+                        <select
+                            id="Heart_Failure_Type"
+                            name="Heart_Failure_Type"
+                            required
+                        >
+
+                            <option value="">
+                                Select type
+                            </option>
+
+                            <option value="HFrEF">
+                                HFrEF
+                            </option>
+
+                            <option value="HFpEF">
+                                HFpEF
+                            </option>
+
+                            <option value="HFmrEF">
+                                HFmrEF
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Ejection_Fraction">
+                            Ejection Fraction (%)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Ejection_Fraction"
+                            name="Ejection_Fraction"
+                            step="0.1"
+                            placeholder="e.g. 35"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 SECTION 4 — VITAL SIGNS
+            =================================== -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <span>04</span>
+
+                    <div>
+                        <h3>Vital Signs</h3>
+                        <p>Patient physiological measurements</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="Systolic_BP">
+                            Systolic BP
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Systolic_BP"
+                            name="Systolic_BP"
+                            step="0.1"
+                            placeholder="e.g. 140"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Diastolic_BP">
+                            Diastolic BP
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Diastolic_BP"
+                            name="Diastolic_BP"
+                            step="0.1"
+                            placeholder="e.g. 85"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Heart_Rate">
+                            Heart Rate
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Heart_Rate"
+                            name="Heart_Rate"
+                            step="0.1"
+                            placeholder="e.g. 88"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Oxygen_Saturation">
+                            Oxygen Saturation
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Oxygen_Saturation"
+                            name="Oxygen_Saturation"
+                            step="0.1"
+                            placeholder="e.g. 94"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 SECTION 5 — LAB RESULTS
+            =================================== -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <span>05</span>
+
+                    <div>
+                        <h3>Laboratory Results</h3>
+                        <p>Patient laboratory measurements</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="Creatinine">
+                            Creatinine
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Creatinine"
+                            name="Creatinine"
+                            step="0.01"
+                            placeholder="e.g. 1.5"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Sodium">
+                            Sodium
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Sodium"
+                            name="Sodium"
+                            step="0.1"
+                            placeholder="e.g. 137"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Potassium">
+                            Potassium
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Potassium"
+                            name="Potassium"
+                            step="0.1"
+                            placeholder="e.g. 4.2"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Hemoglobin">
+                            Hemoglobin
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Hemoglobin"
+                            name="Hemoglobin"
+                            step="0.1"
+                            placeholder="e.g. 12.5"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Blood_Glucose">
+                            Blood Glucose
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Blood_Glucose"
+                            name="Blood_Glucose"
+                            step="0.1"
+                            placeholder="e.g. 140"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="BNP">
+                            BNP
+                        </label>
+
+                        <input
+                            type="number"
+                            id="BNP"
+                            name="BNP"
+                            step="0.1"
+                            placeholder="e.g. 500"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 SECTION 6 — ADMISSION DETAILS
+            =================================== -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <span>06</span>
+
+                    <div>
+                        <h3>Admission Details</h3>
+                        <p>Current hospitalization information</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="Length_of_Stay">
+                            Length of Stay (days)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="Length_of_Stay"
+                            name="Length_of_Stay"
+                            min="0"
+                            step="1"
+                            placeholder="e.g. 7"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="ICU_Admission">
+                            ICU Admission
+                        </label>
+
+                        <select
+                            id="ICU_Admission"
+                            name="ICU_Admission"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Emergency_Admission">
+                            Emergency Admission
+                        </label>
+
+                        <select
+                            id="Emergency_Admission"
+                            name="Emergency_Admission"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 SECTION 7 — MEDICATION
+            =================================== -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <span>07</span>
+
+                    <div>
+                        <h3>Medication</h3>
+                        <p>Current medication information</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="Beta_Blocker">
+                            Beta Blocker
+                        </label>
+
+                        <select
+                            id="Beta_Blocker"
+                            name="Beta_Blocker"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="ACE_ARB">
+                            ACE / ARB
+                        </label>
+
+                        <select
+                            id="ACE_ARB"
+                            name="ACE_ARB"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="Diuretic">
+                            Diuretic
+                        </label>
+
+                        <select
+                            id="Diuretic"
+                            name="Diuretic"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="SGLT2_Inhibitor">
+                            SGLT2 Inhibitor
+                        </label>
+
+                        <select
+                            id="SGLT2_Inhibitor"
+                            name="SGLT2_Inhibitor"
+                            required
+                        >
+
+                            <option value="">
+                                Select
+                            </option>
+
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================
+                 SUBMIT
+            =================================== -->
+
+            <div class="submit-area">
+
+                <button
+                    type="submit"
+                    id="predictButton"
+                >
+                    <span>Predict Readmission Risk</span>
+                    <span class="arrow">→</span>
+                </button>
+
+                <p class="disclaimer">
+                    This application is an academic machine-learning
+                    demonstration and is not a medical diagnosis.
+                </p>
+
+            </div>
+
+        </form>
+
+
+        <!-- ======================================
+             LOADING
+        ======================================= -->
+
+        <div
+            id="loading"
+            class="loading hidden"
+        >
+
+            <div class="spinner"></div>
+
+            <p>
+                Analyzing patient information...
+            </p>
+
+        </div>
+
+
+        <!-- ======================================
+             RESULT
+        ======================================= -->
+
+        <section
+            id="resultSection"
+            class="result-section hidden"
+        >
+
+            <div class="result-header">
+
+                <span class="result-icon">✓</span>
+
+                <div>
+
+                    <h2>Prediction Result</h2>
+
+                    <p>
+                        Logistic Regression Model
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="result-content">
+
+                <div class="result-main">
+
+                    <span class="result-label">
+                        Prediction
+                    </span>
+
+                    <h3 id="predictionResult">
+                        —
+                    </h3>
+
+                </div>
+
+
+                <div class="probability">
+
+                    <span class="result-label">
+                        Readmission Probability
+                    </span>
+
+                    <div class="probability-value">
+
+                        <span id="probabilityValue">
+                            0
+                        </span>%
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div
+                            id="progressBar"
+                            class="progress-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="newPredictionButton"
+                class="secondary-button"
+            >
+                Make Another Prediction
+            </button>
+
+        </section>
+
+
+        <!-- ======================================
+             ERROR
+        ======================================= -->
+
+        <div
+            id="errorMessage"
+            class="error-message hidden"
+        >
+            <strong>Prediction Error</strong>
+
+            <p id="errorText">
+                Something went wrong.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+    <footer>
+
+        <p>
+            HeartReadmit AI · Machine Learning Project
+        </p>
+
+        <p>
+            Built with FastAPI + Scikit-learn
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
