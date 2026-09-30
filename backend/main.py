@@ -3,18 +3,24 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import pandas as pd
 import joblib
-import os
 from pathlib import Path
-import joblib
+
+
+# ==================================================
+# Load ML Model
+# ==================================================
 
 MODEL_PATH = Path(__file__).resolve().parent / "readmission_model.pkl"
 
 model = joblib.load(MODEL_PATH)
 
+print("ML model loaded successfully!")
+
 
 # ==================================================
 # FastAPI Application
 # ==================================================
+
 app = FastAPI(
     title="Heart Failure Readmission Prediction API",
     description="Predicts 30-day hospital readmission using Machine Learning",
@@ -36,30 +42,13 @@ app.add_middleware(
 
 
 # ==================================================
-# Load ML Pipeline
-# ==================================================
-
-MODEL_PATH = os.path.abspath(
-    os.path.join(
-        os.path.dirname(__file__),
-        "..",
-        "model",
-        "readmission_model.pkl"
-    )
-)
-
-model = joblib.load(MODEL_PATH)
-
-print("✅ ML model loaded successfully!")
-
-
-# ==================================================
 # Patient Input Model
 # ==================================================
 
 class PatientData(BaseModel):
 
     # Numeric features
+
     Age: float
     BMI: float
     Exercise_Frequency: float
@@ -92,6 +81,7 @@ class PatientData(BaseModel):
     SGLT2_Inhibitor: float
 
     # Categorical features
+
     Gender: str
     Smoking_Status: str
     Alcohol_Consumption: str
@@ -155,7 +145,10 @@ def predict(patient: PatientData):
     return {
         "prediction": int(prediction),
         "result": result,
-        "readmission_probability": round(float(probability), 4),
+        "readmission_probability": round(
+            float(probability),
+            4
+        ),
         "readmission_probability_percent": round(
             float(probability) * 100,
             2

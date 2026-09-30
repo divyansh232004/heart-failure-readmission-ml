@@ -1,5 +1,5 @@
 const API_URL =
-    "https://heart-failure-readmission-api.onrender.com/predict";
+    "https://heart-failure-readmission-ml-1.onrender.com/predict";
 
 const form = document.getElementById("predictionForm");
 const predictButton = document.getElementById("predictButton");
